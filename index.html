@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <title>Hello World!</title>
+  </head>
+  <body>
+    <form id="form">
+      <h1 id="h1"></h1>
+      Title: <input id="title" name="data" />
+      <button id="btn" type="submit">Set</button>
+      <script src="./src/renderer.js"></script>
+    </form>
+  </body>
+</html>
