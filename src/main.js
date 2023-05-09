@@ -14,7 +14,8 @@ const createWindow = () => {
     width: 800,
     height: 600,
     webPreferences: {
-      // nodeIntegration: true,
+      nodeIntegration: false,
+      webSecurity: false,
       preload: path.join(__dirname, "preload.js"),
     },
   });
@@ -37,16 +38,16 @@ const createWindow = () => {
   var counter = 0;
   var counter2 = 0;
 
-  setInterval(() => {
-    counter++;
-    mainWindow.webContents.send("change", counter);
-  }, 1000);
+  // setInterval(() => {
+  //   counter++;
+  //   mainWindow.webContents.send("change", counter);
+  // }, 1000);
 
-  setInterval(() => {
-    counter2--;
-    // mainWindow.webContents.send("change", counter2);
-    mainWindow.webContents.send();
-  }, 1000);
+  // setInterval(() => {
+  //   counter2--;
+  //   // mainWindow.webContents.send("change", counter2);
+  //   mainWindow.webContents.send();
+  // }, 1000);
 };
 
 // This method will be called when Electron has finished

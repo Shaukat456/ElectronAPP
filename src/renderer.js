@@ -45,17 +45,22 @@ const h1 = document.getElementById("h1");
 
 // window.addEventListener("DOMContentLoaded", () => {});
 
-window.indexBridge.setCounter((event, count) => {
-  h1.innerHTML = count;
-  console.log({ ...event });
-});
+// window.indexBridge.setCounter((event, count) => {
+//   h1.innerHTML = count;
+//   console.log({ ...event });
+// });
 
-var h2 = document.createElement("h2");
-document.body.appendChild(h2);
-window.indexBridge.decreaseCounter((event, count) => {
-  console.log("ss");
-  h2.innerHTML = count;
-});
+// var h2 = document.createElement("h2");
+// document.body.appendChild(h2);
+// window.indexBridge.decreaseCounter((event, count) => {
+//   console.log("ss");
+
+//   h2.innerHTML = count;
+// });
 // setButton.addEventListener("click", () => {
 //   window.Bridge.sendAlert();
 // });
+
+let names = window.dbApi.getNames();
+
+console.log(window.dbApi);
