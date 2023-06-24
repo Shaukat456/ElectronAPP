@@ -1,26 +1,47 @@
 const { app, BrowserWindow, ipcMain, ipcRenderer } = require("electron");
-
 const { autoUpdater } = require("electron-updater");
 const path = require("path");
 
-autoUpdater.setFeedURL("https://github.com/Shaukat456/ElectronAPP");
-
+// autoUpdater.setFeedURL("https://github.com/Shaukat456/ElectronAPP.git");
 // autoUpdater.downloadUpdate().then((res) => res.map());
 
+// Or MacUpdater, AppImageUpdater
+
+// autoUpdater
+//   .checkForUpdatesAndNotify()
+//   .then((res) => console.log({ res }))
+//   .catch((error) => console.log({ error }));
+
+const repo = "Shaukat456/ElectronAPP";
+const token = "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";
+
+autoUpdater.setFeedURL(`https://api.github.com/repos/${repo}/releases/latest`, {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+});
+// autoUpdater.setUpdateCheckInterval(30000); // Check for updates every 30 seconds
 autoUpdater
-  .checkForUpdatesAndNotify()
+  .checkForUpdates()
   .then((res) => {
-    console.log({ res });
+    console.log(res);
   })
-  .catch((e) => console.log({ e }));
-// autoUpdater.checkForUpdates().then((updateInfo) => {
-//   console.log({ updateInfo });
-//   if (updateInfo?.updateAvailable) {
-//     console.log("An update is available!");
-//   } else {
-//     console.log("No update is available.");
-//   }
-// });
+  .catch((err) => console.log(err));
+
+autoUpdater.on("update-available", () => {
+  const latestVersion = autoUpdater.getLatestVersion();
+  const currentVersion = app.getVersion();
+
+  console.log({ latestVersion, currentVersion });
+  if (latestVersion !== currentVersion) {
+  }
+});
+
+autoUpdater.on("error", (error) => {
+  // Handle errors here
+});
+let url = autoUpdater.getFeedURL();
+console.log({ url });
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
